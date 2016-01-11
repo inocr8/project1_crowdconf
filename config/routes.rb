@@ -10,8 +10,6 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
-  devise_for :users
-
   resources :users
   root to: "users#index"
 
