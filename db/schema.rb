@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111162828) do
+ActiveRecord::Schema.define(version: 20160111222103) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "tickets_booked"
+    t.boolean  "success"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "bookings", ["event_id"], name: "index_bookings_on_event_id"
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
   create_table "crowds", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +31,22 @@ ActiveRecord::Schema.define(version: 20160111162828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.text     "short"
+    t.text     "description"
+    t.string   "image"
+    t.integer  "speaker_id"
+    t.integer  "crowd_id"
+    t.integer  "venue_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "events", ["crowd_id"], name: "index_events_on_crowd_id"
+  add_index "events", ["speaker_id"], name: "index_events_on_speaker_id"
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id"
 
   create_table "speakers", force: :cascade do |t|
     t.string   "name"
