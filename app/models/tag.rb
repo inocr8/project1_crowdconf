@@ -1,6 +1,6 @@
-class Speaker < ActiveRecord::Base
+class Tag < ActiveRecord::Base
   has_many :events
   has_many :venues, through: :events
   has_many :crowds, through: :events
-  has_many :tags, through: :events
+  has_many :speakers, through: :events
 end

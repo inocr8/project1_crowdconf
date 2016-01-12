@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111231549) do
+ActiveRecord::Schema.define(version: 20160112010821) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20160111231549) do
   create_table "crowds", force: :cascade do |t|
     t.string   "name"
     t.string   "group"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+    t.string   "image"
   end
 
   create_table "events", force: :cascade do |t|
@@ -42,10 +44,12 @@ ActiveRecord::Schema.define(version: 20160111231549) do
     t.integer  "venue_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "tag_id"
   end
 
   add_index "events", ["crowd_id"], name: "index_events_on_crowd_id"
   add_index "events", ["speaker_id"], name: "index_events_on_speaker_id"
+  add_index "events", ["tag_id"], name: "index_events_on_tag_id"
   add_index "events", ["venue_id"], name: "index_events_on_venue_id"
 
   create_table "speakers", force: :cascade do |t|
@@ -55,6 +59,14 @@ ActiveRecord::Schema.define(version: 20160111231549) do
     t.string   "company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
