@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.text :short
       t.text :description
-      t.string :image
+      t.string :event_image
       t.references :speaker, index: true, foreign_key: true
       t.references :crowd, index: true, foreign_key: true
       t.references :venue, index: true, foreign_key: true

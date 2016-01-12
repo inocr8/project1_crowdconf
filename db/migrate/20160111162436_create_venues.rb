@@ -6,7 +6,7 @@ class CreateVenues < ActiveRecord::Migration
       t.string :location
       t.integer :capacity
       t.string :colour
-      t.string :image
+      t.string :venue_image
 
       t.timestamps null: false
     end

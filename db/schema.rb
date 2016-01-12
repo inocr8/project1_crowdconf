@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(version: 20160112012047) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "description"
-    t.string   "image"
+    t.string   "crowd_image"
   end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "short"
     t.text     "description"
-    t.string   "image"
+    t.string   "event_image"
     t.integer  "speaker_id"
     t.integer  "crowd_id"
     t.integer  "venue_id"
@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 20160112012047) do
     t.string   "email"
     t.string   "twitter"
     t.string   "company"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "image"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "speaker_image"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20160112012047) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "role"
-    t.string   "image"
+    t.string   "user_image"
     t.string   "company"
     t.text     "bio"
     t.string   "name"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160112012047) do
     t.string   "location"
     t.integer  "capacity"
     t.string   "colour"
-    t.string   "image"
+    t.string   "venue_image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

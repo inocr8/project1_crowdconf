@@ -1,5 +1,5 @@
 class AddImageToSpeakers < ActiveRecord::Migration
   def change
-    add_column :speakers, :image, :string
+    add_column :speakers, :speaker_image, :string
   end
 end
