@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'bookings/index'
+
+  get 'bookings/show'
+
+  get 'bookings/new'
+
+  get 'bookings/edit'
+
   get 'events/index'
 
   get 'events/show'
