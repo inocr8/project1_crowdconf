@@ -6,5 +6,5 @@ class Crowd < ActiveRecord::Base
 
   mount_uploader :crowd_image, CrowdImageUploader
 
-  validates :name, :group, presence: true
+  validates :name, :group, presence: true, uniqueness: true
 end

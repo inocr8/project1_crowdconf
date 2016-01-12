@@ -6,5 +6,5 @@ class Venue < ActiveRecord::Base
 
   mount_uploader :venue_image, VenueImageUploader
 
-  validates :name, :description, :capacity, presence: true
+  validates :name, :description, :capacity, presence: true, uniqueness: true
 end

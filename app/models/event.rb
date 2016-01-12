@@ -10,5 +10,5 @@ class Event < ActiveRecord::Base
 
   mount_uploader :event_image, EventImageUploader
 
-  validates :name, :short, :description, :speaker_id, :venue_id, :crowd_id, presence: true
+  validates :name, :short, :description, :speaker_id, :venue_id, :crowd_id, presence: true, uniqueness: true
 end
