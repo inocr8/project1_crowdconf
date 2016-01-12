@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :venue
   belongs_to :tag
 
-  has_many :bookings, dependent: :destroy
-  has_many :events, through: :bookings
+  has_many :bookings
+  has_many :users, through: :bookings
+  has_many :comments
 end

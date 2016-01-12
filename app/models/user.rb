@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :bookings, dependent: :destroy
   has_many :events, through: :bookings
+  has_many :comments
+
 
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
