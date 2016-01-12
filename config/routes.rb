@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'events/index'
+
+  get 'events/show'
+
+  get 'events/edit'
+
+  get 'events/new'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   get 'users/index'
