@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comments/new'
+
   get 'crowds/index'
 
   get 'crowds/show'
