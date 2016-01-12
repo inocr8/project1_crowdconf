@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'speakers/index'
+
+  get 'speakers/show'
+
+  get 'speakers/new'
+
+  get 'speakers/edit'
+
   get 'bookings/index'
 
   get 'bookings/show'
