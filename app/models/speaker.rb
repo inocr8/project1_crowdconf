@@ -6,5 +6,6 @@ class Speaker < ActiveRecord::Base
 
   mount_uploader :speaker_image, SpeakerImageUploader
 
-  validates :name, :email, :twitter, :company, presence: true, uniqueness: true
+  validates :name, :email, :twitter, :company, presence: true
+  validates :name, uniqueness: true
 end

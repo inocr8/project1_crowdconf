@@ -4,5 +4,6 @@ class Tag < ActiveRecord::Base
   has_many :crowds, through: :events
   has_many :speakers, through: :events
 
-  validates :name, :description, presence: true, uniqueness: true
+  validates :name, :description, presence: true
+  validates :name, uniqueness: true
 end
