@@ -1,2 +1,15 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%= @event.name %></h1>
+<h2>Speaker: <%= @event.speaker.name %><br />
+    Venue: <%= @event.venue.name %><br />
+    Crowd: <%= @event.crowd.name %><br />
+    Tag: <%= @event.tag.name %></h2>
+<%= link_to image_tag(@event.event_image.medium.url) %>
+<h3><%= @event.description %></h3>
+<% if can? :update, @event %>
+  <%= link_to('Edit', edit_event_path(@event), method: :get) %>
+<% end %>
+<% if can? :destroy, @event %>
+<%= link_to('Delete', event_path(@event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %>
+<% end %>
+<%= link_to 'Back', events_path %>
+<br /><br />
