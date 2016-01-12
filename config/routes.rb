@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'tags/index'
+
+  get 'tags/show'
+
+  get 'tags/new'
+
+  get 'tags/edit'
+
   get 'venues/index'
 
   get 'venues/show'
@@ -58,7 +66,8 @@ Rails.application.routes.draw do
   resources :speakers
   resources :events
   resources :users
-  root to: "users#index"
+  resources :tags
+  root to: "events#index"
 
   
   # The priority is based upon order of creation: first created -> highest priority.
