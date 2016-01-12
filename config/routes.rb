@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'crowds/index'
+
+  get 'crowds/show'
+
+  get 'crowds/new'
+
+  get 'crowds/edit'
+
   get 'speakers/index'
 
   get 'speakers/show'
@@ -34,6 +42,11 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  resources :bookings
+  resources :crowds
+  resources :venues
+  resources :speakers
+  resources :events
   resources :users
   root to: "users#index"
 
