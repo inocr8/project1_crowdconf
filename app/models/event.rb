@@ -7,4 +7,8 @@ class Event < ActiveRecord::Base
   has_many :bookings
   has_many :users, through: :bookings
   has_many :comments
+
+  mount_uploader :event_image, EventImageUploader
+
+  validates :name, :short, :description, :speaker_id, :venue_id, :crowd_id, presence: true
 end

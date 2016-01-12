@@ -5,4 +5,6 @@ class Speaker < ActiveRecord::Base
   has_many :tags, through: :events
 
   mount_uploader :speaker_image, SpeakerImageUploader
+
+  validates :name, :email, :twitter, :company, presence: true
 end

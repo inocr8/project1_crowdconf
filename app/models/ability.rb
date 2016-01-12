@@ -8,9 +8,16 @@ class Ability
         can :manage, :all
     else
         can :read, :all
-        can :create, Booking
-        can :destroy, Booking 
-    end 
+        can [:create, :destroy], Booking
+        can :create, Comment
+    end
+
+    if user.role? :speaker
+        can :update, Speaker do |speaker|
+            speaker.user == user
+        end
+    end
+   end
 
     # Define abilities for the passed in user here. For example:
     #
@@ -38,5 +45,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-  end
 end
