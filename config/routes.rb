@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'venues/index'
+
+  get 'venues/show'
+
+  get 'venues/new'
+
+  get 'venues/edit'
+
   get 'comments/new'
 
   get 'crowds/index'
