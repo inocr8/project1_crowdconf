@@ -2,10 +2,11 @@
   <h1>List of all bookings</h1>
 <% else %>
   <h1>List of your bookings</h1>
+  <h4><%= link_to('Create new booking', new_booking_path) %></h4>
 <% end %>
 
 <% if @bookings.empty? %>
-  <h3>You have no bookings yet</h3>
+  <h3>You have no bookings yet, if you would like to make a booking click <%= link_to 'here', new_booking_path %>.</h3>
 <% end %>
 
 <% if can? :manage, :all %>

@@ -8,7 +8,7 @@ class Ability
         can :manage, :all
     else
         can :read, :all
-        can [:create, :update, :destroy], Booking
+        can [:create, :destroy], Booking
         can :create, Comment
     end
 

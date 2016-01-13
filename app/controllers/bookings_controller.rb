@@ -18,13 +18,21 @@ class BookingsController < ApplicationController
     end
 
     def create
-      current_user.bookings.create(booking_params)
+      @booking = current_user.bookings.new(booking_params)
 
-      respond_to do |format|
-        if @booking.save
-          format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-        else
-          format.html { render :new }
+      # if @booking.event.capacity_left < params[:tickets_booked].to_i
+      #   redirect_to new_booking_path, notice: 'Unfortunately there are only #{@booking.event.capacity_left} tickets available'
+      # end
+
+      if @booking.event.capacity_sold_out?
+        redirect_to new_booking_path, notice: 'Unfortunately this event has sold out, please try another event'
+      else
+        respond_to do |format|
+          if @booking.save
+            format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+          else
+            format.html { render :new }
+          end
         end
       end
     end

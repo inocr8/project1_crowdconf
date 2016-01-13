@@ -6,7 +6,7 @@
 
 <% @events.each do |event| %>
 
-  <h2><%= event.name %></h2>
+  <h2><%= link_to event.name, event_path(event)  %></h2>
 
   <%= link_to image_tag(event.event_image.thumb.url), event.event_image.medium.url %>
 
@@ -43,7 +43,7 @@
     <% end %>
    <% end %> 
 
-  <%= link_to('Show', event_path(event)) %> <% if can? :update, event %><%= link_to('Edit', edit_event_path(event), method: :get) %><% end %> <% if can? :destroy, event %><%= link_to('Delete', event_path(event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %><% end %>
+  <%= link_to('Show', event_path(event)) %> <%= link_to('Book', new_booking_path) %> <% if can? :update, event %><%= link_to('Edit', edit_event_path(event), method: :get) %><% end %> <% if can? :destroy, event %><%= link_to('Delete', event_path(event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %><% end %>
   <br /><br />
   
 <% end %>

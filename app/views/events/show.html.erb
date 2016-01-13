@@ -72,5 +72,6 @@
     <%= link_to('Delete', event_path(@event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %>
   <% end %>
 
+<%= link_to('Book', new_booking_path) %>
 <%= link_to 'Index', events_path %>
 <%= link_to 'Back', :back %>

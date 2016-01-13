@@ -3,4 +3,5 @@ class Booking < ActiveRecord::Base
   belongs_to :event
 
   validates :event_id, :tickets_booked, presence: true
+
 end

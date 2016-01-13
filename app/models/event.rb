@@ -11,4 +11,22 @@ class Event < ActiveRecord::Base
   mount_uploader :event_image, EventImageUploader
 
   validates :name, :short, :description, :speaker_id, :venue_id, :crowd_id, presence: true
+
+  def event_find
+    event = Event.find(self.id)
+  end
+
+  def capacity_left
+    event_find
+    tickets_left = venue.capacity - bookings.sum(:tickets_booked)
+  end
+
+  def capacity_sold_out?
+    event_find
+    tickets_left = venue.capacity - bookings.sum(:tickets_booked)
+    if tickets_left < 0
+      return true
+    end
+  end
+
 end
