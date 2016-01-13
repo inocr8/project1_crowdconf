@@ -2,7 +2,7 @@
 
 <% @users.each do |user| %>
 
-  <h2>Name: <%= user.name %></h2>
+  <h2>Name: <%= link_to user.name, user_path(user) %></h2>
   <h4>Company: <%= user.company %></h4>
 
   <%= link_to image_tag(user.user_image.thumb.url), user.user_image.medium.url %>

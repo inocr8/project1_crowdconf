@@ -6,7 +6,7 @@
 
 <% @crowds.each do |crowd| %>
 
-  <h2><%= crowd.name %> - (group: <%= crowd.group %>)</h2>
+  <h2><%= link_to crowd.name, crowd_path(crowd) %> - (group: <%= crowd.group %>)</h2>
 
   <%= link_to image_tag(crowd.crowd_image.thumb.url), crowd.crowd_image.medium.url %>
 

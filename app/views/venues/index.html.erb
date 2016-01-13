@@ -6,7 +6,7 @@
 
 <% @venues.each do |venue| %>
 
-  <h2><%= venue.name %> - (colour: <%= venue.colour %>)</h2>
+  <h2><%= link_to venue.name, venue_path(venue) %> - (colour: <%= venue.colour %>)</h2>
 
   <%= link_to image_tag(venue.venue_image.thumb.url), venue.venue_image.medium.url %>
 
