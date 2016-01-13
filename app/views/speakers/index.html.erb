@@ -1,2 +1,25 @@
-<h1>Speakers#index</h1>
-<p>Find me in app/views/speakers/index.html.erb</p>
+<h1>List of all speakers</h1>
+
+<% if can? :create, Speaker %>
+  <%= link_to 'New speaker', new_speaker_path %>
+<% end %>
+
+<% @speakers.each do |speaker| %>
+
+  <h2><%= speaker.name %></h2>
+
+  <%= link_to image_tag(speaker.speaker_image.thumb.url), speaker.speaker_image.medium.url %>
+
+  <% if speaker.events.empty? == false %>
+    <h3>List of events for this Speaker:</h3>
+      <ul>
+        <% speaker.events.each do |event| %>
+          <li><%= link_to event.name, event_path(event) %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <%= link_to('Show', speaker_path(speaker)) %> <% if can? :update, speaker %><%= link_to('Edit', edit_speaker_path(speaker), method: :get) %><% end %> <% if can? :destroy, speaker %><%= link_to('Delete', speaker_path(speaker), method: :delete, data: {confirm: 'Delete this speaker? Are you sure?!'}) %><% end %>
+  <br /><br />
+  
+<% end %>

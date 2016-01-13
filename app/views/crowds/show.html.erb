@@ -4,6 +4,9 @@
 
 <h1><%= @crowd.name %></h1>
 <h2><%= @crowd.group %></h2>
+
+<%= link_to image_tag(@crowd.crowd_image.medium.url) %>
+
 <h3><%= @crowd.description %></h3>
 
 <% if @crowd.events.empty? == false %>
@@ -14,8 +17,6 @@
       <% end %>
     </ul>
 <% end %>
-
-<%= link_to image_tag(@crowd.crowd_image.medium.url) %>
 
 <% if can? :update, @crowd %>
   <%= link_to('Edit', edit_crowd_path(@crowd), method: :get) %>
