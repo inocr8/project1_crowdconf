@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     end
 
     def create
-      @booking = Booking.new(booking_params)
+      current_user.bookings.create(booking_params)
 
       respond_to do |format|
         if @booking.save

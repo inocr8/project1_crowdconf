@@ -8,7 +8,7 @@
   <h2>Bookings:</h2>
     <% if @user.bookings.empty? == false %>
       <% @user.bookings.each do |booking| %>
-      <%= booking.event.name %> (<% booking.tickets_booked %> tickets)
+      <%= booking.event.name %> (<%= booking.tickets_booked %> tickets)
 
       <%= link_to('Show', booking_path(booking)) %> <% if can? :update, booking %> | <%= link_to('Edit', edit_booking_path(booking), method: :get) %><% end %> <% if can? :destroy, booking %> | <%= link_to('Delete', booking_path(booking), method: :delete, data: {confirm: 'Delete this booking? Are you sure?!'}) %><% end %>
       <br /><br />

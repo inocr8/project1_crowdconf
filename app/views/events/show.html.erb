@@ -4,6 +4,21 @@
 
 <h1><%= @event.name %></h1>
 
+<% if can? :manage, :all %>
+  <h4>Number of bookings: <%= @event.bookings.count %><br />
+      Actual tickets sold: <%= @event.bookings.sum(:tickets_booked) %><br />
+      Capacity left at venue: <%= @event.venue.capacity - @event.bookings.sum(:tickets_booked) %><br />
+      Number of comments: <%= @event.comments.count %></h4>
+
+      <h3>List of booked users:</h3>
+      <ul>
+      <% @event.users.each do |user| %>
+          <li><h4><%= link_to image_tag(user.user_image.tiny.url), user %>&nbsp;&nbsp;<%= user.name %> (company: <%= user.company %>)</h4></li>
+      <% end %>
+      </ul>
+  </h4>
+<% end %>
+
 <h2>Speaker: <%= link_to @event.speaker.name, speaker_path(@event.speaker) %><br />
     Venue: <%= link_to @event.venue.name, venue_path(@event.venue) %><br />
     Crowd: <%= link_to @event.crowd.name, crowd_path(@event.crowd) %><br />
@@ -17,7 +32,7 @@
   <h4>Here are some comments on this event:</h4>
     <ul>
       <% @event.comments.each do |comment| %>
-        <li><%= comment.content %></li>
+        <li><h4><%= link_to image_tag(comment.user.user_image.tiny.url), comment.user %>&nbsp;&nbsp;<%= comment.user.name %> said:<br />"<%= comment.content %>"</h4></li>
 
       <% if can? :update, comment %>
         <%= link_to('Edit', edit_comment_path(comment), method: :get) %>
