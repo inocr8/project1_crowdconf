@@ -12,10 +12,10 @@
 
   <p><%= event.short %></p>
 
-  <h3>Speaker: <%= event.speaker.name %><br />
-      Venue: <%= event.venue.name %><br />
-      Crowd: <%= event.crowd.name %><br />
-      Tag: <%= event.tag.name %></h3>
+  <h4>Speaker: <%= link_to event.speaker.name, speaker_path(event.speaker) %><br />
+      Venue: <%= link_to event.venue.name, venue_path(event.venue) %><br />
+      Crowd: <%= link_to event.crowd.name, crowd_path(event.crowd) %><br />
+      Tag: <%= link_to event.tag.name, tag_path(event.tag) %></h4>
 
   <%= link_to('Show', event_path(event)) %> <% if can? :update, event %><%= link_to('Edit', edit_event_path(event), method: :get) %><% end %> <% if can? :destroy, event %><%= link_to('Delete', event_path(event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %><% end %>
   <br /><br />

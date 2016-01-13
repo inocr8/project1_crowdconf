@@ -12,9 +12,9 @@ class Ability
         can :create, Comment
     end
 
-    if user.role? :speaker
+    if user.role? :talent
         can :update, Speaker do |speaker|
-            speaker.user == user
+            speaker.name == user.name
         end
     end
    end

@@ -5,7 +5,7 @@
 <h1><%= @speaker.name %></h1>
 <h2><%= @speaker.email %> | <%= @speaker.twitter %></h2>
 
-<%= link_to image_tag(@speaker.speaker_image.medium.url) %>
+<%= image_tag(@speaker.speaker_image.medium.url) %>
 
 <% if @speaker.events.empty? == false %>
   <h3>List of events for this speaker:</h3>
@@ -14,6 +14,8 @@
         <li><%= link_to event.name, event_path(event) %></li>
       <% end %>
     </ul>
+<% else %>
+  <h4>New events for <%= @speaker.name %> to be added soon!</h4>
 <% end %>
 
 <% if can? :update, @speaker %>

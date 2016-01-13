@@ -1,2 +1,34 @@
-<h1>Venues#show</h1>
-<p>Find me in app/views/venues/show.html.erb</p>
+<% if can? :create, Venue %>
+  <%= link_to 'New venue', new_venue_path %>
+<% end %>
+
+<h1><%= @venue.name %></h1>
+<h2>Colour: <%= @venue.colour %></h2>
+<h3>Location: <%= @venue.location %><br />
+    Capacity: <%= @venue.capacity %></h3>
+
+<%= image_tag(@venue.venue_image.medium.url) %>
+
+<p><%= @venue.description %></p>
+
+<% if @venue.events.empty? == false %>
+  <h3>List of events for this venue:</h3>
+    <ul>
+      <% @venue.events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    </ul>
+<% else %>
+  <h4>New events for <%= @venue.name %> to be added soon!</h4>
+<% end %>
+
+<% if can? :update, @venue %>
+  <%= link_to('Edit', edit_venue_path(@venue), method: :get) %>
+<% end %>
+
+<% if can? :destroy, @venue %>
+  <%= link_to('Delete', venue_path(@venue), method: :delete, data: {confirm: 'Delete this venue? Are you sure?!'}) %>
+<% end %>
+
+<%= link_to 'Index', venues_path %>
+<%= link_to 'Back', :back %>

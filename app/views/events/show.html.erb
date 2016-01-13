@@ -4,12 +4,12 @@
 
 <h1><%= @event.name %></h1>
 
-<h2>Speaker: <%= @event.speaker.name %><br />
-    Venue: <%= @event.venue.name %><br />
-    Crowd: <%= @event.crowd.name %><br />
-    Tag: <%= @event.tag.name %></h2>
+<h2>Speaker: <%= link_to @event.speaker.name, speaker_path(@event.speaker) %><br />
+    Venue: <%= link_to @event.venue.name, venue_path(@event.venue) %><br />
+    Crowd: <%= link_to @event.crowd.name, crowd_path(@event.crowd) %><br />
+    Tag: <%= link_to @event.tag.name, tag_path(@event.tag) %></h2>
 
-  <%= link_to image_tag(@event.event_image.medium.url) %>
+  <%= image_tag(@event.event_image.medium.url) %>
 
 <h3><%= @event.description %></h3>
 
