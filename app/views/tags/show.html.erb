@@ -1,2 +1,26 @@
-<h1>Tags#show</h1>
-<p>Find me in app/views/tags/show.html.erb</p>
+<% if can? :create, Tag %>
+  <%= link_to 'New tag', new_tag_path %>
+<% end %>
+
+<h1><%= @tag.name %></h1>
+<h3><%= @tag.description %></h3>
+
+<% if @tag.events.empty? == false %>
+  <h3>List of events for this tag:</h3>
+    <ul>
+      <% @tag.events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+<% if can? :update, @tag %>
+  <%= link_to('Edit', edit_tag_path(@tag), method: :get) %>
+<% end %>
+
+<% if can? :destroy, @tag %>
+  <%= link_to('Delete', tag_path(@tag), method: :delete, data: {confirm: 'Delete this tag? Are you sure?!'}) %>
+<% end %>
+
+<%= link_to 'Index', tags_path %>
+<%= link_to 'Back', :back %>
