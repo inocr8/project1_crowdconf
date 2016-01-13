@@ -2,8 +2,9 @@
   <%= link_to 'New speaker', new_speaker_path %>
 <% end %>
 
-<h1><%= @speaker.name %></h1>
-<h2><%= @speaker.email %> | <%= @speaker.twitter %></h2>
+<h1>Name: <%= @speaker.name %></h1>
+<h2>Email: <%= @speaker.email %> (twitter: <%= @speaker.twitter %>)<br />
+    Company: <%= @speaker.company %></h2>
 
 <%= image_tag(@speaker.speaker_image.medium.url) %>
 

@@ -6,7 +6,8 @@
 
 <% @speakers.each do |speaker| %>
 
-  <h2><%= speaker.name %></h2>
+  <h2>Name: <%= speaker.name %></h2>
+  <h4>Company: <%= speaker.company %></h4>
 
   <%= link_to image_tag(speaker.speaker_image.thumb.url), speaker.speaker_image.medium.url %>
 

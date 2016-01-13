@@ -14,7 +14,7 @@ class Ability
 
     if user.role? :talent
         can :update, Speaker do |speaker|
-            speaker.name == user.name
+            ( speaker.name == user.name ) || ( speaker.email == user.email )
         end
     end
    end
