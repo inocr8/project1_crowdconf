@@ -1,17 +1,23 @@
 <h1>List of all events</h1>
 
+<% if can? :create, Event %>
+  <%= link_to 'New event', new_event_path %>
+<% end %>
+
 <% @events.each do |event| %>
+
   <h3><%= event.name %></h3>
+
   <%= link_to image_tag(event.event_image.thumb.url), event.event_image.medium.url %>
+
   <p><%= event.short %></p>
+
   <h3>Speaker: <%= event.speaker.name %><br />
       Venue: <%= event.venue.name %><br />
       Crowd: <%= event.crowd.name %><br />
       Tag: <%= event.tag.name %></h3>
+
   <%= link_to('Show', event_path(event)) %> <% if can? :update, event %><%= link_to('Edit', edit_event_path(event), method: :get) %><% end %> <% if can? :destroy, event %><%= link_to('Delete', event_path(event), method: :delete, data: {confirm: 'Delete this event? Are you sure?!'}) %><% end %>
   <br /><br />
-<% end %>
-
-<% if can? :create, Event %>
-  <%= link_to 'New event', new_event_path %>
+  
 <% end %>

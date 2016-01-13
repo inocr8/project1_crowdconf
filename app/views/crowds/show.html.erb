@@ -1,2 +1,29 @@
-<h1>Crowds#show</h1>
-<p>Find me in app/views/crowds/show.html.erb</p>
+<% if can? :create, Crowd %>
+  <%= link_to 'New crowd', new_crowd_path %>
+<% end %>
+
+<h1><%= @crowd.name %></h1>
+<h2><%= @crowd.group %></h2>
+<h3><%= @crowd.description %></h3>
+
+<% if @crowd.events.empty? == false %>
+  <h3>List of events for this Crowd:</h3>
+    <ul>
+      <% @crowd.events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+<%= link_to image_tag(@crowd.crowd_image.medium.url) %>
+
+<% if can? :update, @crowd %>
+  <%= link_to('Edit', edit_crowd_path(@crowd), method: :get) %>
+<% end %>
+
+<% if can? :destroy, @crowd %>
+  <%= link_to('Delete', crowd_path(@crowd), method: :delete, data: {confirm: 'Delete this crowd? Are you sure?!'}) %>
+<% end %>
+
+<%= link_to 'Index', crowds_path %>
+<%= link_to 'Back', :back %>
