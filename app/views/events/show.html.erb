@@ -13,6 +13,42 @@
 
 <h3><%= @event.description %></h3>
 
+<% if @event.comments.empty? == false %>
+  <h4>Here are some comments on this event:</h4>
+    <ul>
+      <% @event.comments.each do |comment| %>
+        <li><%= comment.content %></li>
+
+      <% if can? :update, comment %>
+        <%= link_to('Edit', edit_comment_path(comment), method: :get) %>
+      <% end %>
+
+      <% if can? :destroy, comment %>
+        <%= link_to('Delete', comment_path(comment), method: :delete, data: {confirm: 'Delete this comment? Are you sure?!'}) %>
+      <% end %>
+
+      <% end %>
+    </ul>
+<% else %>
+  <h4>Would you like to add a comment for this event? Just use the form below</h4>
+<% end %>
+
+<% if current_user %>
+  <%= form_for(@comment) do |f| %>
+    <div class="field">
+      <%= f.label :content, 'Add a comment' %><br />
+      <%= f.text_area :content, rows: 6 %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :event_id, value: @event.id %>
+    </div>
+    <br />
+    <div class="actions">
+      <%= f.submit "Add comment" %>
+    </div>
+  <% end %>
+<% end %>
+<br /><br />
   <% if can? :update, @event %>
     <%= link_to('Edit', edit_event_path(@event), method: :get) %>
   <% end %>

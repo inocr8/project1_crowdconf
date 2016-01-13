@@ -15,42 +15,42 @@
     <%= f.label :name, 'Event name' %><br />
     <%= f.text_field :name %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :short, 'Short description' %><br />
     <%= f.text_area :short, rows: 10 %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :description, 'Full description' %><br />
     <%= f.text_area :description, rows: 20 %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :event_image, 'Event image' %><br />
     <%= f.file_field :event_image %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :venue_id, 'Choose venue' %><br />
     <%= f.select :venue_id, Venue.all.collect { |v| [v.name, v.id] } %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :speaker_id, 'Choose speaker' %><br />
     <%= f.select :speaker_id, Speaker.all.collect { |s| [s.name, s.id] } %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :crowd_id, 'Choose crowd' %><br />
     <%= f.select :crowd_id, Crowd.all.collect { |c| [c.name, c.id] } %>
   </div>
-  <br /><br />
+  <br />
   <div class="field">
     <%= f.label :tag_id, 'Choose tag' %><br />
     <%= f.select :tag_id, Tag.all.collect { |t| [t.name, t.id] } %>
   </div>
-  <br /><br />
+  <br />
   <div class="actions">
     <%= f.submit %>
   </div>

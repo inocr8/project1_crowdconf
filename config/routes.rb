@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   resources :events
   resources :users
   resources :tags
+  resources :comments
   root to: "events#index"
 
   

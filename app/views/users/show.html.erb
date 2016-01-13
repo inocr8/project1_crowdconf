@@ -1,2 +1,27 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Name: <%= @user.name %></h1>
+<h2>Email: <%= @user.email %> (twitter: <%= @user.twitter %>)<br />
+    Company: <%= @user.company %></h2>
+
+<%= image_tag(@user.user_image.medium.url) %>
+
+<% if @user.events.empty? == false %>
+  <h3>List of events for this user:</h3>
+    <ul>
+      <% @user.events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %></li>
+      <% end %>
+    </ul>
+<% else %>
+  <h4>New events for <%= @user.name %> to be listed soon!</h4>
+<% end %>
+
+<% if can? :update, @user %>
+  <%= link_to('Edit', edit_user_path(@user), method: :get) %>
+<% end %>
+
+<% if can? :destroy, @user %>
+  <%= link_to('Delete', user_path(@user), method: :delete, data: {confirm: 'Delete this user? Are you sure?!'}) %>
+<% end %>
+
+<%= link_to 'Index', users_path %>
+<%= link_to 'Back', :back %>
