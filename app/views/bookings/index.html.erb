@@ -1,5 +1,6 @@
 <% if can? :manage, :all %>
   <h1>List of all bookings</h1>
+  <h4><%= link_to('Create new booking', new_booking_path) %></h4>
 <% else %>
   <h1>List of your bookings</h1>
   <h4><%= link_to('Create new booking', new_booking_path) %></h4>
