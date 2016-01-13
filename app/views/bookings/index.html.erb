@@ -1,2 +1,40 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<% if can? :manage, :all %>
+  <h1>List of all bookings</h1>
+<% else %>
+  <h1>List of your bookings</h1>
+<% end %>
+
+<% if @bookings.empty? %>
+  <h3>You have no bookings yet</h3>
+<% end %>
+
+<% if can? :manage, :all %>
+  <% @users.each do |user| %>
+
+  <h2>Bookings for <%= link_to(user.name, user_path(user)) %>:</h2>
+    <% if user.bookings.empty? == false %>
+      <% user.bookings.each do |booking| %>
+      <%= booking.event.name %> (<% booking.tickets_booked %> tickets)
+
+      <%= link_to('Show', booking_path(booking)) %> <% if can? :update, booking %> | <%= link_to('Edit', edit_booking_path(booking), method: :get) %> | <% end %> <% if can? :destroy, booking %><%= link_to('Delete', booking_path(booking), method: :delete, data: {confirm: 'Delete this booking? Are you sure?!'}) %><% end %>
+      <br /><br />
+      <% end %>
+      <% else %>
+    <h3>There are no bookings for this user yet.</h3>
+    <% end %>
+  <% end %>
+
+  <% else %>
+
+  <% @bookings.each do |booking| %>
+    <h3><%= link_to booking.event.name, event_path(booking.event) %></h3>
+    <h4>Speaker: <%= link_to booking.event.speaker.name, speaker_path(booking.event.speaker) %><br />
+        Venue: <%= link_to booking.event.venue.name, venue_path(booking.event.venue) %><br />
+        Location: <%= booking.event.venue.location %></h4>
+
+    <p><%= booking.event.short %></p>
+
+  <%= link_to('Show', booking_path(booking)) %> <% if can? :update, booking %><%= link_to('Edit', edit_booking_path(booking), method: :get) %><% end %> <% if can? :destroy, booking %><%= link_to('Delete', booking_path(booking), method: :delete, data: {confirm: 'Delete this booking? Are you sure?!'}) %><% end %>
+  <br /><br />
+  <% end %>
+<% end %>

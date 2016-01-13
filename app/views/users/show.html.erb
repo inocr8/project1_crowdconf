@@ -4,15 +4,32 @@
 
 <%= image_tag(@user.user_image.medium.url) %>
 
-<% if @user.events.empty? == false %>
-  <h3>List of events for this user:</h3>
-    <ul>
-      <% @user.events.each do |event| %>
-        <li><%= link_to event.name, event_path(event) %></li>
+<% if can? :manage, :all %>
+  <h2>Bookings:</h2>
+    <% if @user.bookings.empty? == false %>
+      <% @user.bookings.each do |booking| %>
+      <%= booking.event.name %> (<% booking.tickets_booked %> tickets)
+
+      <%= link_to('Show', booking_path(booking)) %> <% if can? :update, booking %> | <%= link_to('Edit', edit_booking_path(booking), method: :get) %><% end %> <% if can? :destroy, booking %> | <%= link_to('Delete', booking_path(booking), method: :delete, data: {confirm: 'Delete this booking? Are you sure?!'}) %><% end %>
+      <br /><br />
       <% end %>
-    </ul>
-<% else %>
-  <h4>New events for <%= @user.name %> to be listed soon!</h4>
+      <% else %>
+    <h3>There are no bookings for this user yet.</h3>
+    <% end %>
+<% end %>
+
+<% if !can? :manage, :all %>
+  <% if @user.events.empty? == false %>
+    <h3>List of events for this user:</h3>
+      <ul>
+        <% @user.events.each do |event| %>
+          <li><%= link_to event.name, event_path(event) %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  
+  <h4>Get in contact with <%= mail_to @user.email, @user.name %> to meetup at their next event!</h4>
+
 <% end %>
 
 <% if can? :update, @user %>
