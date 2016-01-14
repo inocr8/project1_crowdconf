@@ -29,7 +29,8 @@
   <% else %>
 
   <% @bookings.each do |booking| %>
-    <h3><%= link_to booking.event.name, event_path(booking.event) %></h3>
+    <h2><%= link_to booking.event.name, event_path(booking.event) %></h2>
+    <%= image_tag(booking.event.event_image.medium.url) %>
     <h4>Speaker: <%= link_to booking.event.speaker.name, speaker_path(booking.event.speaker) %><br />
         Venue: <%= link_to booking.event.venue.name, venue_path(booking.event.venue) %><br />
         Location: <%= booking.event.venue.location %></h4>

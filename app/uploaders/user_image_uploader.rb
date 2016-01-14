@@ -16,11 +16,11 @@ class UserImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fill => [100,100]
+    process :resize_to_fill => [300,150]
   end
 
   version :medium do
-    process :resize_to_fill => [300,300]
+    process :resize_to_fill => [600,300]
   end
   
   # Override the directory where uploaded files will be stored.
