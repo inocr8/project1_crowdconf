@@ -7,33 +7,54 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1 class="notice"><%= notice %></h1>
-<h1 class="alert"><%= alert %></h1>
+<header>
+<nav>
+<div class="container-nav">
+  <div class="go-left">
+    <ul>
+      <li> <%= link_to 'events', events_path %> </li>
+      <li> <%= link_to 'attendees', users_path %> </li>
+      <li> <%= link_to 'venues', venues_path %> </li>
+      <li> <%= link_to 'speakers', speakers_path %> </li>
+      <li> <%= link_to 'join a crowd', crowds_path %> </li>
+      <li> <%= link_to 'tag search', tags_path %> </li>
+      <li> <%= link_to 'book here', bookings_path %> </li>
+    </ul>
+  </div>
+  <div class="logo go-right">
+    Welcome to CrowdConf 2016
+  </div>
+  </div>
+</nav>
+</header>
 
-<div class="login">
-  <% if current_user %>
-    <%= current_user.email %>
-    <br>
-    <%= link_to "log out", destroy_user_session_path, method: :delete %> | <%= link_to "edit profile", edit_user_registration_path, method: :get %>
-  <% else %>
-    <%= link_to "sign in", new_user_session_path %>
-    <%= link_to "register", new_user_registration_path %>
-  <% end %>
+<div class="container">
+  <div class="login go-right">
+    <% if current_user %>
+      <%= current_user.email %>
+      <br>
+      <%= link_to "log out", destroy_user_session_path, method: :delete %> | <%= link_to "edit profile", edit_user_registration_path, method: :get %>
+    <% else %>
+      <%= link_to "sign in", new_user_session_path %>
+      <%= link_to "register", new_user_registration_path %>
+    <% end %>
+  </div>
 </div>
 
-<nav>
-  <ul>
-    <li> <%= link_to 'bookings', bookings_path %> </li>
-    <li> <%= link_to 'events', events_path %> </li>
-    <li> <%= link_to 'users', users_path %> </li>
-    <li> <%= link_to 'crowds', crowds_path %> </li>
-    <li> <%= link_to 'venues', venues_path %> </li>
-    <li> <%= link_to 'speakers', speakers_path %> </li>
-    <li> <%= link_to 'tags', tags_path %> </li>
-  </ul>
-</nav>
+<div class="container">
+<h1 class="notice"><%= notice %></h1>
+<h1 class="alert"><%= alert %></h1>
+</div>
 
+<div class="container">
 <%= yield %>
+</div>
+
+<footer>
+<div class="container-nav">
+  <a href=''>Terms &amp; Conditions</a> | <a href=''>Privacy Policy</a>
+  </div>
+</footer>
 
 </body>
 </html>
